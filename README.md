@@ -175,7 +175,7 @@ mvn spring-boot:run
 
 ## 🧑‍💻 Author
 
-Your Name
+Ujjwal
 LinkedIn | GitHub
 
 ---
