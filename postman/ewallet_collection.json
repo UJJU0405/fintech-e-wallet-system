@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "Fintech E-Wallet API",
+    "_postman_id": "12345-ewallet",
+    "description": "API collection for E-Wallet system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login - Get JWT",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/auth/login?username=ujjwal",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "auth", "login"],
+          "query": [
+            {
+              "key": "username",
+              "value": "ujjwal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Money",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/wallet/add?walletId=1&amount=1000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "wallet", "add"],
+          "query": [
+            {
+              "key": "walletId",
+              "value": "1"
+            },
+            {
+              "key": "amount",
+              "value": "1000"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "UPI Transfer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/upi/send?senderUpi=user1@bank&receiverUpi=user2@bank&amount=500&requestId=txn123",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "upi", "send"],
+          "query": [
+            { "key": "senderUpi", "value": "user1@bank" },
+            { "key": "receiverUpi", "value": "user2@bank" },
+            { "key": "amount", "value": "500" },
+            { "key": "requestId", "value": "txn123" }
+          ]
+        }
+      }
+    }
+  ]
+}
