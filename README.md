@@ -1,183 +1,285 @@
-# fintech-e-wallet-system
-Production-grade E-Wallet backend system with UPI simulation, concurrency handling, idempotency, and event-driven architecture using Spring Boot.
 # 💰 Fintech E-Wallet System
 
-A **production-grade backend system** simulating real-world digital payment platforms like UPI (Google Pay / PhonePe).
-Built with focus on **scalability, security, and transaction reliability**.
+A **production-grade backend application** that simulates real-world digital wallet platforms such as **Google Pay / PhonePe / Paytm**.
+
+This project is designed with a focus on **transaction reliability, secure authentication, concurrency-safe operations, and scalable architecture**.
 
 ---
 
-## 🚀 Key Highlights
+## 🚀 Key Features
 
-* 🔐 JWT-based Authentication & Authorization
-* 💸 Wallet Top-up & Peer-to-Peer Transfers
-* 🏦 **UPI Simulation (user@bank ID + collect requests)**
-* ⚡ **Concurrency Handling (Optimistic Locking)**
-* 🔁 **Idempotent Transactions (Duplicate prevention)**
-* 📡 **Event-Driven Architecture (Kafka / Queue-based)**
-* 🔄 **Transaction Retry Mechanism**
-* 📊 Transaction Audit Logging
-* 🔔 Real-time Notifications (WebSockets)
+### 🔐 Authentication & Security
+
+* JWT-based user authentication
+* Secure API access
+* Role-based access structure
+* Password encryption support
 
 ---
 
-## 🧠 System Design
+### 💳 Wallet Operations
 
-### Architecture:
-
-* Controller Layer
-* Service Layer
-* Repository Layer
-* Security Layer
-* Event Layer
-
-### Flow:
-
-1. User initiates transaction
-2. System validates balance + UPI PIN
-3. Idempotency check prevents duplicates
-4. Transaction processed with concurrency control
-5. Event published → Notification & Logging services
-6. Final status returned (SUCCESS / FAILED / PENDING)
+* Create user wallet
+* Add money to wallet
+* Check wallet balance
+* Transfer funds between users
+* Transaction history
 
 ---
 
-## ⚙️ Tech Stack
+### 🏦 UPI Simulation
 
-### Backend:
+* Unique UPI IDs (`user@bank`)
+* Send money via UPI ID
+* Request ID based duplicate prevention
+* Payment status tracking
+
+---
+
+### ⚡ Advanced Backend Engineering
+
+* **Concurrency-safe wallet operations** using optimistic locking
+* **Idempotent APIs** to prevent duplicate transactions
+* **Retry mechanism** for temporary failures
+* **Kafka-based event-driven architecture**
+* Real-time transaction event logging
+
+---
+
+## 🧠 System Architecture
+
+### 📂 Project Layers
+
+```id="jxvhqo"
+Controller → Service → Repository → Database
+                     ↓
+                 Kafka Events
+```
+
+---
+
+### 💸 Transaction Flow
+
+```id="l20gbj"
+User Request
+   ↓
+JWT Authentication
+   ↓
+Balance Validation
+   ↓
+Idempotency Check
+   ↓
+Concurrency-safe Transfer
+   ↓
+Transaction Save
+   ↓
+Kafka Event Publish
+   ↓
+Success Response
+```
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
 
 * Java
 * Spring Boot
-* Spring Security (JWT)
-* Hibernate / JPA
+* Spring Security
+* Spring Data JPA
+* Hibernate
 
-### Database:
+### Database
 
 * MySQL
-* MongoDB (logs)
 
-### Messaging:
+### Messaging
 
-* Kafka / RabbitMQ
+* Apache Kafka
 
-### DevOps:
+### Tools
 
+* Maven
+* Postman
+* GitHub
 * Docker
-* AWS (EC2, S3)
 
 ---
 
-## 📂 Project Structure
+## 📂 Folder Structure
 
-```
-src/main/java/com/fintech/
+```id="5mvdvc"
+src/main/java/com/fintech/ewallet/
 │
 ├── controller/
+│   ├── AuthController.java
+│   ├── WalletController.java
+│   └── UpiController.java
+│
 ├── service/
+│   ├── WalletService.java
+│   ├── TransactionService.java
+│   └── RetryService.java
+│
 ├── repository/
+│   ├── UserRepository.java
+│   ├── WalletRepository.java
+│   └── TransactionRepository.java
+│
 ├── model/
+│   ├── User.java
+│   ├── Wallet.java
+│   └── Transaction.java
+│
 ├── security/
-├── config/
+│   ├── JwtUtil.java
+│   ├── JwtFilter.java
+│   └── SecurityConfig.java
+│
 ├── event/
-└── util/
+│   ├── KafkaProducer.java
+│   └── KafkaConsumer.java
 ```
 
 ---
 
 ## 🔗 API Endpoints
 
-### Auth
+### 🔐 Authentication
 
-* POST /api/auth/register
-* POST /api/auth/login
-
-### Wallet
-
-* POST /api/wallet/add-money
-* POST /api/wallet/transfer
-
-### UPI
-
-* POST /api/upi/send
-* POST /api/upi/request
-* POST /api/upi/approve
-
-### Transactions
-
-* GET /api/transactions
-
----
-
-## 🔐 Advanced Features
-
-### 1. UPI Simulation
-
-* Unique UPI ID (user@bank)
-* Send & collect money
-* PIN verification
-
-### 2. Concurrency Handling
-
-* Prevents double spending
-* Implemented using Optimistic Locking
-
-### 3. Idempotency
-
-* Prevents duplicate transactions
-* Uses unique request ID
-
-### 4. Retry Mechanism
-
-* Automatic retry on failure
-* Exponential backoff strategy
-
-### 5. Event-Driven System
-
-* Kafka-based transaction events
-* Decoupled notification & logging services
-
----
-
-## 🧪 Testing
-
-* Postman Collection included
-* Covers all APIs
-
----
-
-## 🐳 Running with Docker
-
-```
-docker build -t ewallet .
-docker run -p 8080:8080 ewallet
+```id="g36t44"
+POST /api/auth/login
 ```
 
 ---
 
-## ▶️ Run Locally
+### 💰 Wallet
 
+```id="s3ml1r"
+POST /api/wallet/add
+GET  /api/wallet/balance
 ```
-git clone https://github.com/your-username/fintech-e-wallet-system.git
+
+---
+
+### 💸 UPI Transactions
+
+```id="fcd07p"
+POST /api/upi/send
+```
+
+---
+
+## 🧪 Sample API Request
+
+```json id="24xny0"
+{
+  "senderUpi": "user1@bank",
+  "receiverUpi": "user2@bank",
+  "amount": 500,
+  "requestId": "txn123"
+}
+```
+
+---
+
+## ⚙️ How to Run
+
+### 1. Clone Repo
+
+```bash id="q51k1r"
+git clone https://github.com/UJJU0405/fintech-e-wallet-system.git
 cd fintech-e-wallet-system
+```
+
+---
+
+### 2. Configure Database
+
+```sql id="i3h6f0"
+CREATE DATABASE ewallet;
+```
+
+---
+
+### 3. Update `application.properties`
+
+```properties id="8vxtq1"
+spring.datasource.url=jdbc:mysql://localhost:3306/ewallet
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+```
+
+---
+
+### 4. Run Project
+
+```bash id="4j69be"
 mvn spring-boot:run
 ```
 
 ---
 
+## 🔥 Advanced Features Highlight
+
+### ✔ Concurrency Handling
+
+Implemented using:
+
+```java id="0n5hzr"
+@Version
+private Integer version;
+```
+
+Prevents **double deduction / race conditions**
+
+---
+
+### ✔ Idempotency
+
+Each payment request uses:
+
+```java id="5t5u7w"
+requestId
+```
+
+Prevents duplicate payment execution
+
+---
+
+### ✔ Kafka Event System
+
+Every successful transaction triggers:
+
+```java id="skt64l"
+transaction-topic
+```
+
+Used for:
+
+* notifications
+* logging
+* event processing
+
+---
+
 ## 📈 Future Enhancements
 
-* 💳 Payment Gateway Integration
-* 🌍 Multi-currency Wallet
-* 🤖 AI-based Fraud Detection
-* 📱 Frontend (React)
+* Redis caching
+* Rate limiting
+* Microservices split
+* Fraud detection engine
+* Frontend integration
 
 ---
 
-## 🧑‍💻 Author
+## 👨‍💻 Author
 
-Ujjwal
-LinkedIn | GitHub
+**Ujjwal Pandey**
+GitHub: https://github.com/UJJU0405
 
 ---
 
-## ⭐ If you like this project, give it a star!
+## ⭐ If you found this project useful, consider giving it a star
+
