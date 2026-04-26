@@ -1,0 +1,143 @@
+# 📱 E-Wallet App — Product Case Study
+
+## 🧩 Problem
+
+Digital payments in India (UPI-based apps) are fast and widely adopted, but users still face key issues:
+
+* Poor visibility into spending habits
+* Lack of clarity in failed transactions
+* No intelligent insights into where money is going
+
+This leads to **low trust and weak financial awareness**, especially among students and first-time users.
+
+---
+
+## 👤 Target Users
+
+* Students using UPI for daily expenses
+* Young professionals managing frequent transactions
+* Small merchants needing quick payment tracking
+
+---
+
+## 🎯 Product Goal
+
+Improve **user trust and financial awareness** by making transactions:
+
+* Transparent
+* Trackable
+* Insight-driven
+
+---
+
+## 💡 Solution Overview
+
+Built a full-stack **E-Wallet platform** that enables:
+
+* Secure money transactions
+* Real-time transaction tracking
+* Structured transaction history
+
+### Key Differentiator:
+
+Instead of just enabling payments, the product focuses on **post-transaction intelligence**.
+
+---
+
+## ⚙️ Key Features & Execution
+
+### 1. Transaction History System
+
+**User Story:**
+As a user, I want to view my past transactions so that I can track my spending.
+
+**Implementation:**
+
+* Display last 50 transactions
+* Show status (success / failed / pending)
+* Enable date-based filtering
+
+---
+
+### 2. Smart Spending Insights (PM-driven feature)
+
+**Problem:**
+Users don’t understand spending patterns.
+
+**Solution:**
+Categorize transactions into:
+
+* Food 🍔
+* Travel 🚗
+* Bills 💡
+
+**Impact Goal:**
+Help users make better financial decisions.
+
+---
+
+### 3. Failed Transaction Handling
+
+**Problem:**
+Users lose trust when payments fail without clarity.
+
+**Solution:**
+
+* Show clear failure reason
+* Add “Retry Payment” option
+* Maintain transaction logs
+
+---
+
+## 🏗️ Technical Execution
+
+* Backend: Java + Spring Boot
+* Database: PostgreSQL
+* APIs for transaction processing
+* Modular architecture for scalability
+
+---
+
+## 📊 Metrics & Impact (Simulated)
+
+* Daily Active Users (DAU): 1,000+
+* Avg transactions per user: 3/day
+* Failed transaction rate reduced: **18% → 7%**
+* User retention improved: **30% → 45%** after insights feature
+
+---
+
+## ⚖️ Trade-offs & Decisions
+
+* Real-time updates vs server cost → optimized using async processing
+* Detailed analytics vs performance → limited to key categories
+* Simplicity vs feature overload → prioritized core UX
+
+---
+
+## 🔮 Future Roadmap
+
+* UPI Autopay integration
+* AI-based expense recommendations
+* Fraud detection system
+* Credit & lending layer
+
+---
+
+## 📚 Key Learnings
+
+* Building features is easy; solving the *right problem* is hard
+* Metrics define product success, not code
+* User trust is critical in fintech products
+
+---
+
+## 🚀 Final Outcome
+
+This project evolved from a **basic wallet system** into a **user-centric financial product**, focusing on:
+
+* Transparency
+* Insights
+* Trust
+
+---
